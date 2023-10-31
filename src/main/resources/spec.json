@@ -1,0 +1,98 @@
+{
+  "documentationUrl" : "https://docs.airbyte.com/integrations/sources/hive",
+  "connectionSpecification" : {
+    "$schema" : "http://json-schema.org/draft-07/schema#",
+    "title" : "Hive Source Spec",
+    "type" : "object",
+    "required" : [
+      "host",
+      "port",
+      "database",
+      "driver_jdbc",
+      "core_site_conf",
+      "hive_site_conf"
+    ],
+    "properties" : {
+      "host" : {
+        "title" : "Host",
+        "description" : "Hostname of the hive connection. Comma separated hosts is accepted.",
+        "type" : "string",
+        "order" : 0
+      },
+      "port" : {
+        "title" : "Port",
+        "description" : "Port of the hive connection.",
+        "type" : "integer",
+        "minimum" : 0,
+        "maximum" : 65536,
+        "default" : 10000,
+        "examples" : [
+          "10000",
+          "9083"
+        ],
+        "order" : 1
+      },
+      "database" : {
+        "title" : "DB Name",
+        "description" : "Name of the database.",
+        "type" : "string",
+        "order" : 2
+      },
+      "driver_jdbc": {
+        "title": "Driver JDBC Hive",
+        "description": "Driver JDBC for hive connection.",
+        "type": "string",
+        "enum": ["org.apache.hive.jdbc.HiveDriver", "com.cloudera.hive.jdbc41.HS2Driver"],
+        "default": "org.apache.hive.jdbc.HiveDriver",
+        "order": 3
+      },
+      "core_site_conf" : {
+        "title" : "Core site configuration",
+        "description" : "Raw XML of core site configuration",
+        "type" : "string",
+        "multiline" : true,
+        "order" : 11
+      },
+      "hive_site_conf" : {
+        "title" : "Hive site configuration",
+        "description" : "Raw XML of Hive site configuration",
+        "type" : "string",
+        "multiline" : true,
+        "order" : 13
+      },
+      "jdbc_url_params": {
+        "description": "Additional properties to pass to the JDBC URL string when connecting to the hive database formatted as 'key=value' pairs separated by the symbol '&'. (example: key1=value1&key2=value2&key3=value3).",
+        "title": "JDBC URL Params",
+        "type": "string",
+        "order": 6
+      },
+      "kerberos_user": {
+        "title": "Kerberos username",
+        "description": "Specify the username for kerberos.",
+        "type": "string",
+        "order": 1
+      },
+      "kerberos_config": {
+        "title": "Kerberos Configuration file",
+        "description": "Configuration file for kerberos",
+        "type": "string",
+        "multiline": true,
+        "order": 2
+      },
+      "keytab": {
+        "title": "Keytab",
+        "description": "Base64 encoded keytab.",
+        "type": "string",
+        "multiline": true,
+        "order": 3
+      },
+      "ssl_trust_store": {
+        "title": "TrustStore of ssl connection",
+        "description": "Base64 encoded file contains trustStore for the connection. If needed",
+        "type": "string",
+        "multiline": true,
+        "order": 14
+      }
+    }
+  }
+}
